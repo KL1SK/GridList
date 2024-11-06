@@ -422,6 +422,7 @@ local function GetList(inventoryType)
 	else
 		inventoryList = PLAYER_INVENTORY.inventories[list[inventoryType]].listView
 	end
+
 	return inventoryList or list[inventoryType]
 end
 
@@ -705,8 +706,9 @@ local function Core()
 		end
 	end
 
-	RefreshMode = function(currentList, inventoryType) --local defined above
-		local currentList	= currentList or GetList(inventoryType or INVENTORY_BACKPACK)
+	function RefreshMode(currentList, inventoryType) --local defined above
+		local inventoryType = inventoryType or INVENTORY_BACKPACK
+		local currentList	= currentList or GetList(inventoryType)
 		local mode			= currentList.mode
 		currentList.upd		= false
 
